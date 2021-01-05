@@ -17,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
         title: Text('Halal Scanner'),
         actions: <Widget>[
           FlatButton.icon(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.logout),
             label: Text('Logout'),
             onPressed: () {
               Navigator.push(
@@ -79,7 +79,7 @@ class _DashboardState extends State<Dashboard> {
                 'Search',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20.0,
+                  fontSize: 15.0,
                 ),
               ),
               color: Colors.green[400],
@@ -96,13 +96,13 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green[300],
+        backgroundColor: Colors.green[400],
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.white,
         iconSize: 20.0,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
+            icon: Icon(Icons.camera_alt),
             label: 'Scan Barcode',
           ),
           BottomNavigationBarItem(
