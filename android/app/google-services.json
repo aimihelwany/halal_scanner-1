@@ -1,0 +1,40 @@
+{
+    "project_info": {
+      "project_number": "302535040824",
+      "firebase_url": "https://halal-scanner-cd111-default-rtdb.firebaseio.com",
+      "project_id": "halal-scanner-cd111",
+      "storage_bucket": "halal-scanner-cd111.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:302535040824:android:2195d3900df5f98834ebcd",
+          "android_client_info": {
+            "package_name": "com.halal.halal_scanner"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "302535040824-fr3lrj69uu9m7s9paotnvbns4hbs3pqs.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAXUbYbn2oyZkpJKKfA63TuHnIENhUGTtY"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "302535040824-fr3lrj69uu9m7s9paotnvbns4hbs3pqs.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

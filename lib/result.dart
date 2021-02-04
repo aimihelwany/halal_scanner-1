@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:halal_scanner/auth.dart';
 import 'package:halal_scanner/subscribe.dart';
 import 'package:halal_scanner/sign_in.dart';
 
 class HalalResult extends StatelessWidget {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,23 +16,21 @@ class HalalResult extends StatelessWidget {
           FlatButton.icon(
             icon: Icon(Icons.logout),
             label: Text('Logout'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Subscribe(),
-                ),
-              );
+            onPressed: () async {
+              await _auth.signOut();
             },
           )
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset('assets/logo_halal.png'),
+            Image.asset(
+              'assets/logo_halal.png',
+              fit: BoxFit.fitWidth,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -37,7 +38,7 @@ class HalalResult extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/logo_right.png',
-                      width: 50,
+                      width: 40,
                     ),
                   ],
                 ),
@@ -48,8 +49,8 @@ class HalalResult extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
-                        fontSize: 20,
+                        letterSpacing: 0.1,
+                        fontSize: 18,
                       ),
                     ),
                   ],

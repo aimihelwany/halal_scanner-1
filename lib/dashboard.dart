@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:halal_scanner/sign_in.dart';
-import 'package:halal_scanner/subscribe.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:halal_scanner/auth.dart';
+import 'package:halal_scanner/sign_in.dart';
+import 'package:halal_scanner/result.dart';
+import 'package:halal_scanner/subscribe.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class Dashboard extends StatefulWidget {
@@ -10,12 +12,14 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final AuthService _auth = AuthService();
   String search = '';
   String _data = '';
 
-  Future<String> _scan() async {
-    return await FlutterBarcodeScanner.scanBarcode(
-        '#000000', 'Cancel', true, ScanMode.BARCODE);
+  _scan() async {
+    await FlutterBarcodeScanner.scanBarcode(
+            '#000000', 'Cancel', true, ScanMode.BARCODE)
+        .then((value) => setState(() => _data = value));
   }
 
   @override
@@ -29,15 +33,10 @@ class _DashboardState extends State<Dashboard> {
           FlatButton.icon(
             icon: Icon(Icons.logout),
             label: Text('Logout'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignIn(),
-                ),
-              );
+            onPressed: () async {
+              await _auth.signOut();
             },
-          )
+          ),
         ],
       ),
       body: Container(
@@ -97,11 +96,12 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Dashboard(),
+                    builder: (context) => HalalResult(),
                   ),
                 );
               },
             ),
+            Text(_data),
           ],
         ),
       ),
@@ -135,7 +135,7 @@ class _DashboardState extends State<Dashboard> {
           SpeedDialChild(
             child: Icon(Icons.camera_alt_rounded),
             backgroundColor: Colors.greenAccent,
-            onTap: () async => _data = await _scan(),
+            onTap: () => _scan(),
             label: 'Camera',
             labelStyle: TextStyle(
                 fontWeight: FontWeight.w500,

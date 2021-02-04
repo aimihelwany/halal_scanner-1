@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:halal_scanner/auth.dart';
+import 'package:halal_scanner/dashboard.dart';
 import 'package:halal_scanner/result.dart';
 import 'package:halal_scanner/sign_in.dart';
 
 class Subscribe extends StatelessWidget {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,19 +20,14 @@ class Subscribe extends StatelessWidget {
           FlatButton.icon(
             icon: Icon(Icons.logout),
             label: Text('Logout'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignIn(),
-                ),
-              );
+            onPressed: () async {
+              await _auth.signOut();
             },
           )
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -36,6 +35,7 @@ class Subscribe extends StatelessWidget {
               'assets/crown.png',
               width: 250,
               fit: BoxFit.fitWidth,
+              height: 122,
             ),
             Text(
               'PREMIUM',
@@ -43,7 +43,7 @@ class Subscribe extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
-                fontSize: 50,
+                fontSize: 30,
               ),
             ),
             Text(
@@ -52,7 +52,7 @@ class Subscribe extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
-                fontSize: 25,
+                fontSize: 20,
               ),
             ),
             Row(
@@ -74,7 +74,7 @@ class Subscribe extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                   ],
@@ -100,7 +100,7 @@ class Subscribe extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                   ],
@@ -126,7 +126,7 @@ class Subscribe extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                   ],
