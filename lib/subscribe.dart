@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halal_scanner/auth.dart';
-import 'package:halal_scanner/dashboard.dart';
 import 'package:halal_scanner/result.dart';
-import 'package:halal_scanner/sign_in.dart';
 
 class Subscribe extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -26,16 +24,15 @@ class Subscribe extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.all(10.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
               'assets/crown.png',
               width: 250,
               fit: BoxFit.fitWidth,
-              height: 122,
             ),
             Text(
               'PREMIUM',
@@ -43,7 +40,7 @@ class Subscribe extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
-                fontSize: 30,
+                fontSize: 40,
               ),
             ),
             Text(
@@ -52,7 +49,7 @@ class Subscribe extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
-                fontSize: 20,
+                fontSize: 30,
               ),
             ),
             Row(
@@ -62,7 +59,7 @@ class Subscribe extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/logo_tick.png',
-                      width: 50,
+                      width: 60,
                     ),
                   ],
                 ),
@@ -74,7 +71,7 @@ class Subscribe extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
                     ),
                   ],
@@ -88,19 +85,24 @@ class Subscribe extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/logo_tick.png',
-                      width: 50,
+                      width: 60,
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Text(
-                      'Worldwide products category',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
-                        fontSize: 15,
+                    Container(
+                      width: 200,
+                      child: Text(
+                        'Worldwide products category',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ],
@@ -114,7 +116,7 @@ class Subscribe extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/logo_tick.png',
-                      width: 50,
+                      width: 60,
                     ),
                   ],
                 ),
@@ -126,7 +128,7 @@ class Subscribe extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
                     ),
                   ],

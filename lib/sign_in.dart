@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:halal_scanner/admin_signIn.dart';
 import 'package:halal_scanner/auth.dart';
 import 'package:halal_scanner/dashboard.dart';
 import 'package:halal_scanner/sign_up.dart';
@@ -47,105 +46,92 @@ class _SignInState extends State<SignIn> {
                 horizontal: 50.0,
                 vertical: 20.0,
               ),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage('assets/logo.png'),
-                      radius: 70.0,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Center(
-                      child: Text(
-                        'HALAL SCANNER APP',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundImage: AssetImage('assets/logo.png'),
+                        radius: 70.0,
                       ),
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
+                      SizedBox(
+                        height: 20.0,
                       ),
-                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
-                      onChanged: (val) {
-                        setState(() => email = val);
-                      },
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                      ),
-                      obscureText: true,
-                      validator: (val) => val.length < 6
-                          ? 'Enter a password 6+ chars long'
-                          : null,
-                      onChanged: (val) {
-                        setState(() => password = val);
-                      },
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RaisedButton(
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
+                      Center(
+                        child: Text(
+                          'HALAL SCANNER APP',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              setState(() => loading = true);
-                              dynamic result = await _auth
-                                  .signInWithEmailAndPassword(email, password);
-                              if (result == null) {
-                                setState(() {
-                                  error =
-                                      'could not sign in with those credentials';
-                                  loading = false;
-                                });
-                              }
-                            }
-                          },
                         ),
-                        SizedBox(
-                          width: 20,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Email',
                         ),
-                        FlatButton.icon(
-                            icon: Icon(Icons.person),
-                            label: Text(
-                              'Admin',
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter an email' : null,
+                        onChanged: (val) {
+                          setState(() => email = val);
+                        },
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                        ),
+                        obscureText: true,
+                        validator: (val) => val.length < 6
+                            ? 'Enter a password 6+ chars long'
+                            : null,
+                        onChanged: (val) {
+                          setState(() => password = val);
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RaisedButton(
+                            child: Text(
+                              'Sign In',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
                               ),
                             ),
-                            color: Colors.green[400],
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AdminSignIn()),
-                              );
-                            }),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Text(
-                      error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    ),
-                  ],
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                setState(() => loading = true);
+                                dynamic result =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() {
+                                    error =
+                                        'could not sign in with those credentials';
+                                    loading = false;
+                                  });
+                                }
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

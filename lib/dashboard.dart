@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:halal_scanner/addProduct.dart';
 import 'package:halal_scanner/auth.dart';
 import 'package:halal_scanner/sign_in.dart';
 import 'package:halal_scanner/result.dart';
@@ -101,7 +102,6 @@ class _DashboardState extends State<Dashboard> {
                 );
               },
             ),
-            Text(_data),
           ],
         ),
       ),
@@ -136,7 +136,25 @@ class _DashboardState extends State<Dashboard> {
             child: Icon(Icons.camera_alt_rounded),
             backgroundColor: Colors.greenAccent,
             onTap: () => _scan(),
-            label: 'Camera',
+            label: 'Scan',
+            labelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                fontSize: 16.0),
+            labelBackgroundColor: Colors.greenAccent,
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.add),
+            backgroundColor: Colors.greenAccent,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddProduct(),
+                ),
+              );
+            },
+            label: 'Add Product',
             labelStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
