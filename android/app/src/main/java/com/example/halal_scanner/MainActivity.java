@@ -1,4 +1,4 @@
-package com.example.halal_scanner;
+package com.halal.halal_scanner;
 
 import io.flutter.embedding.android.FlutterActivity;
 
