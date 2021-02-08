@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halal_scanner/auth.dart';
-import 'package:halal_scanner/result.dart';
+import 'package:halal_scanner/payment.dart';
 
 class Subscribe extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -144,7 +144,7 @@ class Subscribe extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HalalResult(),
+                        builder: (context) => Payment(),
                       ),
                     );
                   },

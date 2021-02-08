@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:halal_scanner/addProduct.dart';
 import 'package:halal_scanner/auth.dart';
-import 'package:halal_scanner/sign_in.dart';
+import 'package:halal_scanner/NonHalalResult.dart';
 import 'package:halal_scanner/result.dart';
 import 'package:halal_scanner/subscribe.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
+final productsRef = Firestore.instance.collection('products');
 
 class Dashboard extends StatefulWidget {
   @override
@@ -16,15 +19,36 @@ class _DashboardState extends State<Dashboard> {
   final AuthService _auth = AuthService();
   String search = '';
   String _data = '';
+  String bc = '-';
+  String bc2 = '*';
 
-  _scan() async {
-    await FlutterBarcodeScanner.scanBarcode(
-            '#000000', 'Cancel', true, ScanMode.BARCODE)
-        .then((value) => setState(() => _data = value));
+  Future _scan() async {
+    String _data = await FlutterBarcodeScanner.scanBarcode(
+        '#000000', 'Cancel', true, ScanMode.BARCODE);
+    setState(() => this._data = _data);
+
+    DocumentSnapshot variable =
+        await productsRef.document('XAJ4W0pcwQx5Z6RwJiDC').get();
+    setState(() => this.bc = variable['barcode']);
+
+    DocumentSnapshot variable2 =
+        await productsRef.document('8qJBeBhDxT9J2pauvxT6').get();
+    setState(() => this.bc2 = variable2['barcode']);
   }
 
   @override
   Widget build(BuildContext context) {
+//     Text(_data);
+    if (_data == bc) {
+      return HalalResult();
+    } else if (_data == bc2) {
+      return NonHalalResult();
+    } else {
+      print(_data);
+      print('not in data');
+      print(bc);
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[300],
@@ -143,6 +167,7 @@ class _DashboardState extends State<Dashboard> {
                 fontSize: 16.0),
             labelBackgroundColor: Colors.greenAccent,
           ),
+          // FAB 3
           SpeedDialChild(
             child: Icon(Icons.add),
             backgroundColor: Colors.greenAccent,

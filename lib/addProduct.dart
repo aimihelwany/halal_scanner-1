@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halal_scanner/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class AddProduct extends StatefulWidget {
@@ -9,8 +10,10 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   final AuthService _auth = AuthService();
+  final db = Firestore.instance;
   String _data = '';
   String _status = '';
+  String msg = '';
 
   _scan() async {
     await FlutterBarcodeScanner.scanBarcode(
@@ -90,7 +93,19 @@ class _AddProductState extends State<AddProduct> {
               ),
               RaisedButton(
                 child: Text('Submit'),
-                // onPressed: ,
+                onPressed: () async {
+                  await db.collection("products").add(
+                    {
+                      'barcode': _data,
+                      'status': _status,
+                    },
+                  );
+                },
+              ),
+              SizedBox(height: 20.0),
+              Text(
+                msg,
+                style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
             ],
           ),
